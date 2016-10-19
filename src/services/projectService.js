@@ -13,7 +13,7 @@ module.exports = {
 				}
 
 				files.forEach((file) => {
-					projects.push(new ConfigLoader(file, config));
+					projects.push(new ConfigLoader(file, config, {}));
 				});
 				resolve(projects);
 			});
