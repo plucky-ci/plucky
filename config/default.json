@@ -1,0 +1,13 @@
+{
+	"appConfig": {
+		"port":3000
+	},
+	"projectsDirectory": "/Users/vchenhu/Projects/Tinder/plucky-ci/plucky",
+	"jenkinsConfig": {
+		"url": "some url",
+		"auth": {
+			"user": "admin",
+			"pass": "very_secret"
+		}
+	}
+}
