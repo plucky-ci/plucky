@@ -1,12 +1,10 @@
-
 const config = require('config');
 const projectService = require('../services/projectService');
 
 class ProjectController {
 	constructor(options) {
 		this.socket = options.socket;
-		this.getProjects();
-		this.socket.on('project:get', this.getProjects);
+		this.socket.on('project:get', this.getProjects.bind(this));
 	}
 
 	getProjects() {

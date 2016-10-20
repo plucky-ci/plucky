@@ -1,7 +1,6 @@
 const config = require('config');
 const glob = require('glob');
 const {ConfigLoader} = require('plucky-loader');
-const {Pipeline} = require('plucky-pipeliner');
 
 module.exports = {
 	getProjects: () => {
@@ -18,15 +17,6 @@ module.exports = {
 				});
 				resolve(projects);
 			});
-		});
-	},
-
-	startProject: (project, socket) => {
-		const pipeline = new Pipeline({
-			name: project.name,
-			description: project.description,
-			tasks: project.tasks,
-			process: project.process
 		});
 	}
 };

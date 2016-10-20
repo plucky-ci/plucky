@@ -1,0 +1,12 @@
+{
+	"name": "Console",
+	"imports": {
+		"plucky-shell": "plucky-shell"
+	},
+	"process": [{
+		"task": "plucky-shell",
+		"params": {
+			"command": "pwd"
+		}
+	}]
+}

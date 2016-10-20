@@ -39,7 +39,7 @@ module.exports = {
 		hot: true,
 		historyApiFallback: true,
 		proxy: {
-		  '/api/**': {
+		  '/socket.io/**': {
 		  	target: 'http://localhost:3000/'
 		  }
 		},
