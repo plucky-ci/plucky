@@ -8,5 +8,15 @@
 		"params": {
 			"command": "pwd"
 		}
+	}, {
+		"task": "plucky-shell",
+		"params": {
+			"command": "pwd"
+		}
+	}, {
+		"task": "plucky-shell",
+		"params": {
+			"command": "pwd"
+		}
 	}]
 }

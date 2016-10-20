@@ -12,10 +12,16 @@ class DashboardContainer extends React.Component {
 		};
 
 		this.props.socket.on('project:list', (projects) => {
-			console.log(projects);
 			this.setState({
 				projects
 			});
+		});
+
+		this.props.socket.on('pipeline:completed', (meta) => {
+			if(meta.error) {
+				return console.log('something went wrong do something about it');
+			}
+			console.log('yay!');
 		});
 
 		this.props.socket.emit('project:get');
