@@ -29,6 +29,9 @@
     "glob": "^7.1.1",
     "lab": "^11.1.0",
     "nodemon": "^1.11.0",
+    "plucky-loader": "0.0.4",
+    "plucky-pipeliner": "0.0.4",
+    "plucky-plugin-manager": "0.0.1",
     "socket.io": "^1.5.0"
   },
   "devDependencies": {
