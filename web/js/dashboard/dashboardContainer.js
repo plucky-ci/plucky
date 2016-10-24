@@ -24,6 +24,10 @@ class DashboardContainer extends React.Component {
 			console.log('yay!');
 		});
 
+		this.props.socket.on('pipeline:progress', (meta) => {
+			console.log(meta);
+		});
+
 		this.props.socket.emit('project:get');
 	}
 
