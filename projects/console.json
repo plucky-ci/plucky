@@ -30,7 +30,7 @@
 			"execFile": true,
 			"command":"./createBuild.sh",
 			"cwd": "./repositories/hed-console/",
-			"arguments": ["pull", "-v", "${web.version}"]
+			"arguments": ["pull", "${web.version}"]
 		}
 	}, {
 		"task": "plucky-jenkins",
