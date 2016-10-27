@@ -6,12 +6,6 @@
 		"plucky-git": "plucky-git"
 	},
 	"process": [{
-		"task": "plucky-git",
-		"params": {
-			"repository": "git@bitbucket.org:pearson-techops/hed-console.git",
-			"folder":"repositories/hed-console"
-		}
-	}, {
 		"task": "plucky-shell",
 		"params": {
 			"execFile": true,
