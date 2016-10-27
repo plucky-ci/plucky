@@ -2,6 +2,8 @@ const config = require('config');
 const projectService = require('../services/projectService');
 const {Pipeline} = require('plucky-pipeliner');
 const {plugins} = require('plucky-plugin-manager');
+const {jsonMapper} = require('plucky-mapper');
+
 
 class ProjectController {
 	constructor(options) {
@@ -11,11 +13,13 @@ class ProjectController {
 
 	executePipeline(project) {
 		plugins.get(project.imports, (err, obj) => {
+			// any web overrides will be done here
+			const processOverrides = jsonMapper(project, {});
 			const pipeline = new Pipeline({
 				name: project.name,
 				description: project.description,
 				tasks: obj,
-				process: project.process
+				process: processOverrides.process
 			});
 			pipeline.execute({}, (error, result) => {
 				this.socket.emit('pipeline:completed', {error, project});
