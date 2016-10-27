@@ -3,7 +3,8 @@
 	"type": "generator",
 	"imports": {
 		"plucky-shell": "plucky-shell",
-		"plucky-git": "plucky-git"
+		"plucky-git": "plucky-git",
+		"plucky-jenkins": "plucky-jenkins"
 	},
 	"process": [{
 		"task": "plucky-git",
@@ -30,6 +31,58 @@
 			"command":"./createBuild.sh",
 			"cwd": "./repositories/hed-console/",
 			"arguments": ["pull", "-v", "${web.version}"]
+		}
+	}, {
+		"task": "plucky-jenkins",
+		"params": { 
+			"url": "http://hed-console.prsn.io", 
+			"auth": {
+				"type": "userpass",
+				"userpass": {
+					"username": "admin",
+					"password": "very_secret"
+				}
+			},
+			"jobName": "seed-job"
+		}
+	}, {
+		"task": "plucky-jenkins",
+		"params": { 
+			"url": "http://hed-console.prsn.io", 
+			"auth": {
+				"type": "userpass",
+				"userpass": {
+					"username": "admin",
+					"password": "very_secret"
+				}
+			},
+			"jobName": "console-ui"
+		}
+	}, {
+		"task": "plucky-jenkins",
+		"params": { 
+			"url": "http://hed-console.prsn.io", 
+			"auth": {
+				"type": "userpass",
+				"userpass": {
+					"username": "admin",
+					"password": "very_secret"
+				}
+			},
+			"jobName": "console-server"
+		}
+	}, {
+		"task": "plucky-jenkins",
+		"params": { 
+			"url": "http://hed-console.prsn.io", 
+			"auth": {
+				"type": "userpass",
+				"userpass": {
+					"username": "admin",
+					"password": "very_secret"
+				}
+			},
+			"jobName": "console-docker-image"
 		}
 	}]
 }
