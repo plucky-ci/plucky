@@ -22,6 +22,7 @@ class ProjectController {
 				process: processOverrides.process
 			});
 			pipeline.execute({}, (error, result) => {
+				console.log(result);
 				this.socket.emit('pipeline:completed', {error, project});
 			});
 			pipeline.on('progress', (progress) => {
