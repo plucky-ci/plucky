@@ -14,7 +14,7 @@ class ProjectController {
 	executePipeline(project) {
 		plugins.get(project.imports, (err, obj) => {
 			// any web overrides will be done here
-			const processOverrides = jsonMapper(project, {});
+			const processOverrides = jsonMapper(project, config);
 			const pipeline = new Pipeline({
 				name: project.name,
 				description: project.description,
@@ -22,12 +22,14 @@ class ProjectController {
 				process: processOverrides.process
 			});
 			pipeline.execute({}, (error, result) => {
-				console.log(result);
 				this.socket.emit('pipeline:completed', {error, project});
 			});
 			pipeline.on('progress', (progress) => {
-				console.log(progress);
+				console.log('progress', progress);
 				this.socket.emit('pipeline:progress', progress);
+			});
+			pipeline.on('steperror', (error) => {
+				console.log(error);
 			});
 		});
 	}

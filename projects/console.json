@@ -33,55 +33,31 @@
 			"arguments": ["pull", "${web.version}"]
 		}
 	}, {
-		"task": "plucky-jenkins",
+		"task": "plucky-jenkins.ExecuteJob",
 		"params": { 
-			"url": "http://hed-console.prsn.io", 
-			"auth": {
-				"type": "userpass",
-				"userpass": {
-					"username": "admin",
-					"password": "very_secret"
-				}
-			},
+			"url": "${jenkinsConfig.url}", 
+			"auth": "${jenkinsConfig.auth}",
 			"jobName": "seed-job"
 		}
 	}, {
-		"task": "plucky-jenkins",
+		"task": "plucky-jenkins.ExecuteJob",
 		"params": { 
-			"url": "http://hed-console.prsn.io", 
-			"auth": {
-				"type": "userpass",
-				"userpass": {
-					"username": "admin",
-					"password": "very_secret"
-				}
-			},
+			"url": "${jenkinsConfig.url}", 
+			"auth": "${jenkinsConfig.auth}",
 			"jobName": "console-ui"
 		}
 	}, {
-		"task": "plucky-jenkins",
+		"task": "plucky-jenkins.ExecuteJob",
 		"params": { 
-			"url": "http://hed-console.prsn.io", 
-			"auth": {
-				"type": "userpass",
-				"userpass": {
-					"username": "admin",
-					"password": "very_secret"
-				}
-			},
+			"url": "${jenkinsConfig.url}", 
+			"auth": "${jenkinsConfig.auth}",
 			"jobName": "console-server"
 		}
 	}, {
-		"task": "plucky-jenkins",
+		"task": "plucky-jenkins.ExecuteJob",
 		"params": { 
-			"url": "http://hed-console.prsn.io", 
-			"auth": {
-				"type": "userpass",
-				"userpass": {
-					"username": "admin",
-					"password": "very_secret"
-				}
-			},
+			"url": "${jenkinsConfig.url}", 
+			"auth": "${jenkinsConfig.auth}",
 			"jobName": "console-docker-image"
 		}
 	}]

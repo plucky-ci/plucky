@@ -4,10 +4,13 @@
 	},
 	"projectsDirectory": "/Users/vchenhu/Projects/Tinder/plucky-ci/plucky",
 	"jenkinsConfig": {
-		"url": "some url",
+		"url": "http://hed-console.prsn.io",
 		"auth": {
-			"user": "admin",
-			"pass": "very_secret"
+			"type": "userpass",
+			"userpass": {
+				"user": "admin",
+				"pass": "very_secret"
+			}
 		}
 	}
 }
