@@ -25,7 +25,6 @@ class ProjectController {
 				this.socket.emit('pipeline:completed', {error, project});
 			});
 			pipeline.on('progress', (progress) => {
-				console.log('progress', progress);
 				this.socket.emit('pipeline:progress', progress);
 			});
 			pipeline.on('steperror', (error) => {
