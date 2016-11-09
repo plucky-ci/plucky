@@ -9,8 +9,8 @@ app.use(express.static('web'));
 
 
 io.on('connection', function(socket){
-  	const projectController = new ProjectController({socket});
-  	const pipelineController = new PipelineController({socket});
+  	const projectController = new ProjectController({socket, io});
+  	const pipelineController = new PipelineController({socket, io});
 });
 
 http.listen(3000, function(){
