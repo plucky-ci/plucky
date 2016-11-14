@@ -19,24 +19,75 @@
 			}
 		}
 	},
-	"pipelines": {
-		"environments": {
-			"process":[{
-				"task": "plucky-git",
-				"params": {
-					"repository": "git@bitbucket.org:pearson-techops/hed-console.git",
-					"folder":"repositories/hed-console"
-				}
-			}, {
-				"task": "plucky-bitesize-pipeline",
-				"params": {
-					"fileLocation": "repositories/hed-console/environments.bitesize"
-				}
-			}]
-		},
-		"health":{
-			"process":[]
-		},
+	"modules": {
+		"environments": [
+			{
+				"name":"dev",
+				"process":[{
+					"task": "plucky-jenkins.ExecuteJob",
+					"params": { 
+						"url": "${localConfig.jenkins.url}", 
+						"auth": "${localConfig.jenkins.auth}",
+						"jobName": "dev-deploy",
+						"console_VERSION":"${web.releaseVersion}"
+					}
+				}]
+			},
+			{
+				"name":"qa",
+				"process":[{
+					"task": "plucky-jenkins.ExecuteJob",
+					"params": { 
+						"url": "${localConfig.jenkins.url}", 
+						"auth": "${localConfig.jenkins.auth}",
+						"jobName": "qa-deploy",
+						"console_VERSION":"${web.releaseVersion}"
+					}
+				}]
+			},
+			{
+				"name":"stg",
+				"process":[{
+					"task": "plucky-jenkins.ExecuteJob",
+					"params": { 
+						"url": "${localConfig.jenkins.url}", 
+						"auth": "${localConfig.jenkins.auth}",
+						"jobName": "stg-deploy",
+						"console_VERSION":"${web.releaseVersion}"
+					}
+				}]
+			},
+			{
+				"name":"prd",
+				"process":[{
+					"task": "plucky-jenkins.ExecuteJob",
+					"params": { 
+						"url": "${localConfig.jenkins.url}", 
+						"auth": "${localConfig.jenkins.auth}",
+						"jobName": "dev-deploy",
+						"console_VERSION":"${web.releaseVersion}"
+					}
+				}]
+			}
+		],
+		"health":[
+			{
+				"name":"dev",
+				"process":[]
+			},
+			{
+				"name":"qa",
+				"process":[]
+			},
+			{
+				"name":"stg",
+				"process":[]
+			},
+			{
+				"name":"prd",
+				"process":[]
+			}
+		],
 		"build": {
 			"process": [{
 				"task": "plucky-git",

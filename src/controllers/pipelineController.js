@@ -14,13 +14,15 @@ class ProjectController {
 	executePipeline(params) {
 		const {
 			imports,
-			runPipeline,
+			module,
 			projectName,
+			overrides,
 			pipelineName
 		} = params;
 		plugins.get(imports, (err, obj) => {
 			// any web overrides will be done here
-			const processOverrides = jsonMapper(runPipeline, config);
+			const processOverrides = jsonMapper(module, overrides);
+			console.log(processOverrides.process);
 			const pipeline = new Pipeline({
 				name: projectName,
 				tasks: obj,
