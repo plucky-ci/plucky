@@ -71,6 +71,14 @@
 				}]
 			}
 		],
+		"releaseList": {
+			"process": [{
+				"task":"plucky-console-version.GetVersion",
+				"params":{
+					"file":"./currentversions.json"
+				}
+			}]
+		},
 		"health":[
 			{
 				"name":"dev",
@@ -155,7 +163,7 @@
 					"getKeys":["version"]
 				}
 			}, {
-				"task":"plucky-console-version",
+				"task":"plucky-console-version.SaveVersion",
 				"params":{
 					"file":"./currentversions.json"
 				}

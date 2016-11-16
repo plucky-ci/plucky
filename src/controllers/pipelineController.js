@@ -29,7 +29,7 @@ class ProjectController {
 			});
 			pipeline.execute({}, (error, result) => {
 				console.log('pipeline completed');
-				this.io.emit('pipeline:completed', {params});
+				this.io.emit('pipeline:completed', {params, result});
 			});
 			pipeline.on('progress', (progress) => {
 				console.log('pipeline progress', progress);
