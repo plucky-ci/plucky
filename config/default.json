@@ -3,7 +3,7 @@
 		"port":3000
 	},
 	"projectsDirectory": "/Users/vchenhu/Projects/Tinder/plucky-ci/plucky",
-	"ui": {
-		"health":"some repo"
+	"history": {
+		"file":"history.json"
 	}
 }
