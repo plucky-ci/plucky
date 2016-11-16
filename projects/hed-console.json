@@ -5,7 +5,8 @@
 		"plucky-shell": "plucky-shell",
 		"plucky-git": "plucky-git",
 		"plucky-jenkins": "plucky-jenkins",
-		"plucky-bitesize-pipeline":"plucky-bitesize-pipeline"
+		"plucky-cache":"plucky-cache",
+		"plucky-console-version":"plucky-console-version"
 	},
 	"localConfig": {
 		"jenkins": {
@@ -64,7 +65,7 @@
 					"params": { 
 						"url": "${localConfig.jenkins.url}", 
 						"auth": "${localConfig.jenkins.auth}",
-						"jobName": "dev-deploy",
+						"jobName": "prd-deploy",
 						"console_VERSION":"${web.releaseVersion}"
 					}
 				}]
@@ -116,6 +117,11 @@
 					"arguments": ["pull", "${web.version}"]
 				}
 			}, {
+				"task": "plucky-cache.set",
+				"params": {
+					"key":"version"
+				}
+			}, {
 				"task": "plucky-jenkins.ExecuteJob",
 				"params": { 
 					"url": "${localConfig.jenkins.url}", 
@@ -142,6 +148,16 @@
 					"url": "${localConfig.jenkins.url}", 
 					"auth": "${localConfig.jenkins.auth}",
 					"jobName": "console-docker-image"
+				}
+			}, {
+				"task": "plucky-cache.get",
+				"params": {
+					"getKeys":["version"]
+				}
+			}, {
+				"task":"plucky-console-version",
+				"params":{
+					"file":"./currentversions.json"
 				}
 			}]
 		}
