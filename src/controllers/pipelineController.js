@@ -4,8 +4,8 @@ const {Pipeline} = require('plucky-pipeliner');
 const {plugins} = require('plucky-plugin-manager');
 const {jsonMapper} = require('plucky-mapper');
 const jsonfile = require('jsonfile');
+const historyService = require('../services/historyService');
 const uuid = require('uuid');
-const path = require('path');
 
 class ProjectController {
 	constructor(options) {
@@ -14,43 +14,16 @@ class ProjectController {
 		this.socket.on('pipeline:start', this.executePipeline.bind(this));
 	}
 
-	createHistory(project, pipeline, overrides, id) {
-		const file = path.join(process.cwd(), config.history.file);
-		let list = jsonfile.readFileSync(file, {throws: false});
-		list.push({
-			project,
-			pipeline,
-			overrides,
-			step: [], 
-			id,
-			processing: true,
-			succeeded: false
-		});
-		jsonfile.writeFileSync(file, list);
-	}
-
-	updateHistory(id, step, processing, succeeded) {
-		const file = path.join(process.cwd(), config.history.file);
-		let list = jsonfile.readFileSync(file, {throws: false});
-		list.forEach((history) => {
-			if(history.id === id) {
-				history.step.push(step);
-				history.processing = processing;
-				history.succeeded = succeeded;
-			}
-		});
-		jsonfile.writeFileSync(file, list);
-	}
-
 	executePipeline(params) {
 		const {
 			imports,
 			module,
 			projectName,
 			overrides,
-			pipelineName
+			pipelineName,
+			meta
 		} = params;
-		const randomId = uuid.v4();
+		const id = uuid.v4();
 		plugins.get(imports, (err, obj) => {
 			// any web overrides will be done here
 			const processOverrides = jsonMapper(module, overrides);
@@ -59,25 +32,34 @@ class ProjectController {
 				tasks: obj,
 				process: processOverrides.process
 			});
+
 			pipeline.execute({}, (error, result) => {
 				console.log('pipeline completed');
-				this.updateHistory(randomId, result, false, true);
-				this.io.emit('pipeline:completed', {params, result});
+
+				historyService.completeHistory(id, result, false, true).then((historyList) => {
+					this.io.emit('pipeline:completed', {params, result, historyList});
+				});
+				
 			});
 			pipeline.on('progress', (progress) => {
 				console.log('pipeline progress', progress);
-				this.updateHistory(randomId, progress, true, false);
-				this.io.emit('pipeline:progress', {params, progress});
+
+				historyService.updateHistoryProgress(id, progress, true, false).then((historyList) => {
+					this.io.emit('pipeline:progress', {params, progress, historyList});
+				});
+				
 			});
 			pipeline.on('steperror', (error) => {
 				console.log('pipeline steperror');
-				this.updateHistory(randomId, error, false, false);
-				this.io.emit('pipeline:steperror', {params, error});
+				
+				historyService.historyError(id, error, false, false).then((historyList) => {
+					this.io.emit('pipeline:steperror', {params, error, historyList});
+				});
 			});
 
-			if(pipelineName === 'build' || pipelineName === 'release') {
-				this.createHistory(projectName, pipelineName, overrides, randomId);
-			}
+			historyService.createHistory(id, projectName, pipelineName, overrides, meta).then((historyList) => {
+				this.io.emit('pipeline:history', historyList);
+			});
 		});
 	}
 }

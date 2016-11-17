@@ -13,7 +13,8 @@ module.exports = {
 				}
 
 				files.forEach((file) => {
-					projects.push(new ConfigLoader(file, config, {}));
+					const project = new ConfigLoader(file, config, {});
+					projects.push(project.config);
 				});
 				resolve(projects);
 			});
