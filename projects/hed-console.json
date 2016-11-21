@@ -78,19 +78,19 @@
 		"health":[
 			{
 				"name":"dev",
-				"process":[]
+				"url": "https://console-dev.pearsoned.com/health"
 			},
 			{
 				"name":"qa",
-				"process":[]
+				"url": "https://console-qa.stg-openclass.com/health"
 			},
 			{
 				"name":"stg",
-				"process":[]
+				"url": "https://console-stg.pearson.com/health"
 			},
 			{
 				"name":"prd",
-				"process":[]
+				"url": "https://console.pearson.com/health"
 			}
 		],
 		"build": {

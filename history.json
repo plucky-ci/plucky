@@ -1,1 +1,1 @@
-[]
+[{"project":"hed-console","pipeline":"release","overrides":{"web":{"releaseVersion":"3.23.0"}},"step":[{"stepNumber":0,"step":{},"code":0,"value":{"result":"idle"}},{"result":"idle"}],"id":"27f2b22e-3e19-4d56-aa65-fba07a5b94be","meta":{"description":"Release 3.23.0 to stg","stepCount":1},"processing":false,"succeeded":true}]
