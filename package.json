@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/plucky-ci/plucky#readme",
   "dependencies": {
+    "boom": "^4.2.0",
     "bunyan": "^1.8.5",
     "code": "^4.0.0",
     "config": "^1.21.0",
@@ -33,6 +34,7 @@
     "plucky-loader": "0.0.5",
     "plucky-pipeliner": "0.0.4",
     "plucky-plugin-manager": "0.0.1",
+    "request": "^2.79.0",
     "socket.io": "^1.5.0",
     "uuid": "^2.0.3"
   }
