@@ -95,29 +95,11 @@
 		],
 		"build": {
 			"process": [{
-				"task": "plucky-git",
-				"params": {
-					"repository": "git@bitbucket.org:pearson-techops/hed-console.git",
-					"folder":"repositories/hed-console"
-				}
-			}, {
-				"task": "plucky-git",
-				"params": {
-					"repository": "ssh://git@bitbucket.pearson.com/occ/console-server.git",
-					"folder":"repositories/console-server"
-				}
-			}, {
-				"task": "plucky-git",
-				"params": {
-					"repository": "ssh://git@bitbucket.pearson.com/occ/console-ui.git",
-					"folder":"repositories/console-ui"
-				}
-			}, {
 				"task": "plucky-shell",
 				"params": {
 					"execFile": true,
-					"command":"./createBuild.sh",
-					"cwd": "./repositories/hed-console/",
+					"command":"./createbuild.sh",
+					"cwd": "repositories/hed-console/",
 					"arguments": ["pull", "${web.version}"]
 				}
 			}, {
