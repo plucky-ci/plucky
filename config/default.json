@@ -1,9 +1,0 @@
-{
-	"appConfig": {
-		"port":3000
-	},
-	"projectsDirectory": "/Users/vchenhu/Projects/Tinder/plucky-ci/plucky",
-	"history": {
-		"file":"history.json"
-	}
-}
