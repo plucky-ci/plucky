@@ -35,6 +35,7 @@
     "plucky-bitesize-pipeline": "0.0.2",
     "plucky-git": "0.0.2",
     "plucky-loader": "0.0.5",
+    "plucky-mapper": "0.0.6",
     "plucky-pipeliner": "0.0.4",
     "plucky-plugin-manager": "0.0.1",
     "request": "^2.79.0",
