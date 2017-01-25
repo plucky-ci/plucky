@@ -32,7 +32,7 @@
     "lab": "^11.1.0",
     "nodegit": "^0.16.0",
     "nodemon": "^1.11.0",
-    "plucky-bitesize-pipeline": "0.0.3",
+    "plucky-common": "0.0.1",
     "plucky-git": "0.0.2",
     "plucky-loader": "0.0.5",
     "plucky-mapper": "0.0.6",
