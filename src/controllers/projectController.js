@@ -1,8 +1,8 @@
 const config = require('config');
 const projectService = require('../services/projectService');
 const historyService = require('../services/historyService');
-const BitesizeConfiguration = require('plucky-common');
-const GitWrap = require('plucky-git').GitWrap;
+const BitesizeConfiguration = require('plucky-common').BiteSize;
+const GitWrap = require('plucky-common').GitWrap;
 
 class ProjectController {
 	constructor(options) {
