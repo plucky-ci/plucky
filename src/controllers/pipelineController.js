@@ -39,7 +39,7 @@ class ProjectController {
 				historyService.completeHistory(id, result, false, true).then((historyList) => {
 					this.io.emit('pipeline:completed', {params, result, historyList});
 				});
-				
+
 			});
 			pipeline.on('progress', (progress) => {
 				console.log('pipeline progress', progress);
@@ -47,11 +47,11 @@ class ProjectController {
 				historyService.updateHistoryProgress(id, progress, true, false).then((historyList) => {
 					this.io.emit('pipeline:progress', {params, progress, historyList});
 				});
-				
+
 			});
 			pipeline.on('steperror', (error) => {
 				console.log('pipeline steperror');
-				
+
 				historyService.historyError(id, error, false, false).then((historyList) => {
 					this.io.emit('pipeline:steperror', {params, error, historyList});
 				});
